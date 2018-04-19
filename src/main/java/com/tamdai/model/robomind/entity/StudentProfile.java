@@ -46,6 +46,9 @@ public class StudentProfile {
 
     @Column(name = "stStart")
     private String stStart;
+    
+    @Column(name = "stRole")
+    private String stRole;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
@@ -167,7 +170,15 @@ public class StudentProfile {
         this.contents = contents;
     }
 
-    public StudentProfile() {
+    public String getStRole() {
+		return stRole;
+	}
+
+	public void setStRole(String stRole) {
+		this.stRole = stRole;
+	}
+
+	public StudentProfile() {
     }
 
     public StudentProfile(String stId, String stNickname, String stFirstname, String stLastname, String stSchool, String stDate, String stAge, String stParent, String stEmail, String stMobile, String stStart) {
@@ -215,65 +226,139 @@ public class StudentProfile {
         this.roboImageSet = roboImageSet;
     }
 
-    @Override
-    public String toString() {
-        return "StudentProfile{" +
-                "id=" + id +
-                ", stId='" + stId + '\'' +
-                ", stNickname='" + stNickname + '\'' +
-                ", stFirstname='" + stFirstname + '\'' +
-                ", stLastname='" + stLastname + '\'' +
-                ", stSchool='" + stSchool + '\'' +
-                ", stDate='" + stDate + '\'' +
-                ", stAge='" + stAge + '\'' +
-                ", stParent='" + stParent + '\'' +
-                ", stEmail='" + stEmail + '\'' +
-                ", stMobile='" + stMobile + '\'' +
-                ", stStart='" + stStart + '\'' +
-                ", roboImageSet=" + roboImageSet +
-                ", contents=" + contents +
-                '}';
-    }
+    public StudentProfile(long id, String stId, String stNickname, String stFirstname, String stLastname,
+			String stSchool, String stDate, String stAge, String stParent, String stEmail, String stMobile,
+			String stStart, String stRole, Set<RoboImage> roboImageSet, Set<Content> contents) {
+		super();
+		this.id = id;
+		this.stId = stId;
+		this.stNickname = stNickname;
+		this.stFirstname = stFirstname;
+		this.stLastname = stLastname;
+		this.stSchool = stSchool;
+		this.stDate = stDate;
+		this.stAge = stAge;
+		this.stParent = stParent;
+		this.stEmail = stEmail;
+		this.stMobile = stMobile;
+		this.stStart = stStart;
+		this.stRole = stRole;
+		this.roboImageSet = roboImageSet;
+		this.contents = contents;
+	}
+
+	@Override
+	public String toString() {
+		return "StudentProfile [id=" + id + ", stId=" + stId + ", stNickname=" + stNickname + ", stFirstname="
+				+ stFirstname + ", stLastname=" + stLastname + ", stSchool=" + stSchool + ", stDate=" + stDate
+				+ ", stAge=" + stAge + ", stParent=" + stParent + ", stEmail=" + stEmail + ", stMobile=" + stMobile
+				+ ", stStart=" + stStart + ", stRole=" + stRole + ", roboImageSet=" + roboImageSet + ", contents="
+				+ contents + "]";
+	}
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        StudentProfile that = (StudentProfile) o;
-
-        if (id != that.id) return false;
-        if (stId != null ? !stId.equals(that.stId) : that.stId != null) return false;
-        if (stNickname != null ? !stNickname.equals(that.stNickname) : that.stNickname != null) return false;
-        if (stFirstname != null ? !stFirstname.equals(that.stFirstname) : that.stFirstname != null) return false;
-        if (stLastname != null ? !stLastname.equals(that.stLastname) : that.stLastname != null) return false;
-        if (stSchool != null ? !stSchool.equals(that.stSchool) : that.stSchool != null) return false;
-        if (stDate != null ? !stDate.equals(that.stDate) : that.stDate != null) return false;
-        if (stAge != null ? !stAge.equals(that.stAge) : that.stAge != null) return false;
-        if (stParent != null ? !stParent.equals(that.stParent) : that.stParent != null) return false;
-        if (stEmail != null ? !stEmail.equals(that.stEmail) : that.stEmail != null) return false;
-        if (stMobile != null ? !stMobile.equals(that.stMobile) : that.stMobile != null) return false;
-        if (stStart != null ? !stStart.equals(that.stStart) : that.stStart != null) return false;
-        if (roboImageSet != null ? !roboImageSet.equals(that.roboImageSet) : that.roboImageSet != null) return false;
-        return contents != null ? contents.equals(that.contents) : that.contents == null;
-    }
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StudentProfile other = (StudentProfile) obj;
+		if (contents == null) {
+			if (other.contents != null)
+				return false;
+		} else if (!contents.equals(other.contents))
+			return false;
+		if (id != other.id)
+			return false;
+		if (roboImageSet == null) {
+			if (other.roboImageSet != null)
+				return false;
+		} else if (!roboImageSet.equals(other.roboImageSet))
+			return false;
+		if (stAge == null) {
+			if (other.stAge != null)
+				return false;
+		} else if (!stAge.equals(other.stAge))
+			return false;
+		if (stDate == null) {
+			if (other.stDate != null)
+				return false;
+		} else if (!stDate.equals(other.stDate))
+			return false;
+		if (stEmail == null) {
+			if (other.stEmail != null)
+				return false;
+		} else if (!stEmail.equals(other.stEmail))
+			return false;
+		if (stFirstname == null) {
+			if (other.stFirstname != null)
+				return false;
+		} else if (!stFirstname.equals(other.stFirstname))
+			return false;
+		if (stId == null) {
+			if (other.stId != null)
+				return false;
+		} else if (!stId.equals(other.stId))
+			return false;
+		if (stLastname == null) {
+			if (other.stLastname != null)
+				return false;
+		} else if (!stLastname.equals(other.stLastname))
+			return false;
+		if (stMobile == null) {
+			if (other.stMobile != null)
+				return false;
+		} else if (!stMobile.equals(other.stMobile))
+			return false;
+		if (stNickname == null) {
+			if (other.stNickname != null)
+				return false;
+		} else if (!stNickname.equals(other.stNickname))
+			return false;
+		if (stParent == null) {
+			if (other.stParent != null)
+				return false;
+		} else if (!stParent.equals(other.stParent))
+			return false;
+		if (stRole == null) {
+			if (other.stRole != null)
+				return false;
+		} else if (!stRole.equals(other.stRole))
+			return false;
+		if (stSchool == null) {
+			if (other.stSchool != null)
+				return false;
+		} else if (!stSchool.equals(other.stSchool))
+			return false;
+		if (stStart == null) {
+			if (other.stStart != null)
+				return false;
+		} else if (!stStart.equals(other.stStart))
+			return false;
+		return true;
+	}
 
     @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (stId != null ? stId.hashCode() : 0);
-        result = 31 * result + (stNickname != null ? stNickname.hashCode() : 0);
-        result = 31 * result + (stFirstname != null ? stFirstname.hashCode() : 0);
-        result = 31 * result + (stLastname != null ? stLastname.hashCode() : 0);
-        result = 31 * result + (stSchool != null ? stSchool.hashCode() : 0);
-        result = 31 * result + (stDate != null ? stDate.hashCode() : 0);
-        result = 31 * result + (stAge != null ? stAge.hashCode() : 0);
-        result = 31 * result + (stParent != null ? stParent.hashCode() : 0);
-        result = 31 * result + (stEmail != null ? stEmail.hashCode() : 0);
-        result = 31 * result + (stMobile != null ? stMobile.hashCode() : 0);
-        result = 31 * result + (stStart != null ? stStart.hashCode() : 0);
-        result = 31 * result + (roboImageSet != null ? roboImageSet.hashCode() : 0);
-        result = 31 * result + (contents != null ? contents.hashCode() : 0);
-        return result;
-    }
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((contents == null) ? 0 : contents.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((roboImageSet == null) ? 0 : roboImageSet.hashCode());
+		result = prime * result + ((stAge == null) ? 0 : stAge.hashCode());
+		result = prime * result + ((stDate == null) ? 0 : stDate.hashCode());
+		result = prime * result + ((stEmail == null) ? 0 : stEmail.hashCode());
+		result = prime * result + ((stFirstname == null) ? 0 : stFirstname.hashCode());
+		result = prime * result + ((stId == null) ? 0 : stId.hashCode());
+		result = prime * result + ((stLastname == null) ? 0 : stLastname.hashCode());
+		result = prime * result + ((stMobile == null) ? 0 : stMobile.hashCode());
+		result = prime * result + ((stNickname == null) ? 0 : stNickname.hashCode());
+		result = prime * result + ((stParent == null) ? 0 : stParent.hashCode());
+		result = prime * result + ((stRole == null) ? 0 : stRole.hashCode());
+		result = prime * result + ((stSchool == null) ? 0 : stSchool.hashCode());
+		result = prime * result + ((stStart == null) ? 0 : stStart.hashCode());
+		return result;
+	}
 }

@@ -125,7 +125,7 @@ public class CourseItemController {
                 while (itr.hasNext()) {
                     MultipartFile multipartFile = mRequest.getFile(itr.next());
 
-                    String destination = "C:\\Users\\Film\\Documents\\TD002-master\\src\\main\\resources\\video\\" + multipartFile.getOriginalFilename();
+                    String destination = "C:\\Users\\Film\\Documents\\TD002_Version2\\src\\main\\resources\\video\\" + multipartFile.getOriginalFilename();
 
                     VideoClip video = new VideoClip();
                     video.setFileName(multipartFile.getOriginalFilename());
@@ -140,7 +140,7 @@ public class CourseItemController {
 
                     byte[] bytes = file.getBytes();
                     BufferedOutputStream stream =
-                            new BufferedOutputStream(new FileOutputStream(new File("C:\\Users\\Film\\Documents\\TD002-master\\src\\main\\resources\\video\\" + multipartFile.getOriginalFilename())));
+                            new BufferedOutputStream(new FileOutputStream(new File("C:\\Users\\Film\\Documents\\TD002_Version2\\src\\main\\resources\\video\\" + multipartFile.getOriginalFilename())));
                     stream.write(bytes);
                     stream.close();
                 }
@@ -168,7 +168,7 @@ public class CourseItemController {
     	final Pattern RANGE_PATTERN = Pattern.compile("bytes=(?<start>\\d*)-(?<end>\\d*)");
     	  
         
-    	Path vdo = Paths.get("C:\\Users\\Film\\Documents\\TD002-master\\src\\main\\resources\\video\\" + videoClip.getFileName());
+    	Path vdo = Paths.get("C:\\Users\\Film\\Documents\\TD002_Version2\\src\\main\\resources\\video\\" + videoClip.getFileName());
     	
     	int length = (int) Files.size(vdo);
 	    int start = 0;
@@ -239,7 +239,7 @@ public class CourseItemController {
             while (itr.hasNext()) {
                 MultipartFile multipartFile = mRequest.getFile(itr.next());
 
-                String destination = "C:\\Users\\Film\\Documents\\TD002-master\\src\\main\\resources\\imageitem\\" + multipartFile.getOriginalFilename();
+                String destination = "C:\\Users\\Film\\Documents\\TD002_Version2\\src\\main\\resources\\imageitem\\" + multipartFile.getOriginalFilename();
 
                 ImageItem imageItem = new ImageItem();
                 imageItem.setImageName(multipartFile.getOriginalFilename());
@@ -249,7 +249,7 @@ public class CourseItemController {
 
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File("C:\\Users\\Film\\Documents\\TD002-master\\src\\main\\resources\\imageitem\\" + multipartFile.getOriginalFilename())));
+                        new BufferedOutputStream(new FileOutputStream(new File("C:\\Users\\Film\\Documents\\TD002_Version2\\src\\main\\resources\\imageitem\\" + multipartFile.getOriginalFilename())));
                 stream.write(bytes);
                 stream.close();
             }
@@ -266,7 +266,7 @@ public class CourseItemController {
 
         ImageItem imageItem = imageItemRepository.findOne(id);
 
-        String filePath = "C:\\Users\\Film\\Documents\\TD002-master\\src\\main\\resources\\imageitem\\" + imageItem.getImageName();
+        String filePath = "C:\\Users\\Film\\Documents\\TD002_Version2\\src\\main\\resources\\imageitem\\" + imageItem.getImageName();
 
         int fileSize = (int) new File(filePath).length();
         response.setContentLength(fileSize);

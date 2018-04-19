@@ -38,7 +38,7 @@ public class UserImageController {
 	@Autowired
 	UserImageRepository userImageRepository;
 
-	public static String PathUsertimg =  "C:\\Users\\Film\\Documents\\TD002-master\\src\\main\\resources\\imageuser\\";
+	public static String PathUsertimg =  "C:\\Users\\Film\\Documents\\TD002_Version2\\src\\main\\resources\\imageuser\\";
 	//public static String PathContentimg = "/opt/resource/imageuser/";
 
 	@RequestMapping(value = "add/ImageUser", method = RequestMethod.POST)

@@ -232,7 +232,7 @@ public class CourseController {
 
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File("C:\\Users\\Film\\Documents\\TD002-master\\src\\main\\resources\\imagecourse\\" + multipartFile.getOriginalFilename())));
+                        new BufferedOutputStream(new FileOutputStream(new File("C:\\Users\\Film\\Documents\\TD002_Version2\\src\\main\\resources\\imagecourse\\" + multipartFile.getOriginalFilename())));
                 stream.write(bytes);
                 stream.close();
             }
@@ -249,7 +249,7 @@ public class CourseController {
 
         ImageCourse imageCourse = imageCourseRepository.findOne(id);
 
-        String filePath = "C:\\Users\\Film\\Documents\\TD002-master\\src\\main\\resources\\imagecourse\\" + imageCourse.getImageName();
+        String filePath = "C:\\Users\\Film\\Documents\\TD002_Version2\\src\\main\\resources\\imagecourse\\" + imageCourse.getImageName();
 
         int fileSize = (int) new File(filePath).length();
         response.setContentLength(fileSize);

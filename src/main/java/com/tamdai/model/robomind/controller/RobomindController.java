@@ -40,10 +40,10 @@ public class RobomindController {
 	@Autowired
 	RobomindDao robomindDao;
 
-	public static String PathRoboImg = "C:\\Users\\Film\\Documents\\TD002-master\\src\\main\\resources\\roboImg\\";
+	public static String PathRoboImg = "C:\\Users\\Film\\Documents\\TD002_Version2\\src\\main\\resources\\roboImg\\";
 	// public static String PathRoboImg = "/opt/resource/roboImg/";
 
-	public static String PathContentimg =  "C:\\Users\\Film\\Documents\\TD002-master\\src\\main\\resources\\contentimg\\";
+	public static String PathContentimg =  "C:\\Users\\Film\\Documents\\TD002_Version2\\src\\main\\resources\\contentimg\\";
 	// public static String PathContentimg = "/opt/resource/contentimg/";
 
 	@RequestMapping(value = "createProfile", method = RequestMethod.POST)
@@ -172,8 +172,6 @@ public class RobomindController {
 				byte[] bytes = file.getBytes();
 				BufferedOutputStream stream = new BufferedOutputStream(
 						new FileOutputStream(new File(PathRoboImg + multipartFile.getOriginalFilename())));
-				// /opt/resource/roboImg/
-				// C:\\Users\\Film\\Documents\\Tamdai\\td002\\src\\main\\resources\\roboImg\\
 				stream.write(bytes);
 				stream.close();
 			}
@@ -260,8 +258,6 @@ public class RobomindController {
 				byte[] bytes = file.getBytes();
 				BufferedOutputStream stream = new BufferedOutputStream(
 						new FileOutputStream(new File(PathContentimg + multipartFile.getOriginalFilename())));
-				// /opt/resource/contentimg/
-				// C:\\Users\\Film\\Documents\\Tamdai\\td002\\src\\main\\resources\\contentimg\\
 				stream.write(bytes);
 				stream.close();
 			}
@@ -284,9 +280,7 @@ public class RobomindController {
 		ContentImg contentImg = robomindService.getImageContent(id);
 
 		String filePath = PathContentimg + contentImg.getFileName();
-		// C:\Users\Film\Documents\Tamdai\td002\src\main\resources\contentimg\
-		// /opt/resource/contentimg/
-
+		
 		int fileSize = (int) new File(filePath).length();
 		response.setContentLength(fileSize);
 		response.setContentType("image");
